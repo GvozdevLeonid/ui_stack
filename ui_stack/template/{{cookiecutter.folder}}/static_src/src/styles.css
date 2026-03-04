@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@source "../../../**/*.{html,py,js}";
+
+{% if cookiecutter.include_daisy_ui == 'yes' %}
+@plugin "daisyui";{% endif %}
+
+
+/* Your custom styles are below. */

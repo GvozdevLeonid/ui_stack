@@ -1,0 +1,59 @@
+{
+  "name": "{{ cookiecutter.folder }}",
+  "version": "1.0.0",
+  "description": "Frontend build pipeline",
+  "scripts": {
+    "start": "npm run dev",
+    "build": "npm run build:clean && npm run build:css && npm run build:js",
+    "build:clean": "rimraf ../../static/css/* ../../static/js/*",
+    "build:css": "cross-env NODE_ENV=production postcss ./src/styles.css -o ../../static/css/styles.css --minify",
+    "build:js": "esbuild ./src/script.js --bundle --minify --define:process.env.NODE_ENV=\"'production'\" --outfile=../../static/js/script.js",
+    "dev": "npm run dev:css && npm run dev:js",
+    "dev:css": "cross-env NODE_ENV=development postcss ./src/styles.css -o ../../static/css/styles.css -w",
+    "dev:js": "esbuild ./src/script.js --bundle --sourcemap --define:process.env.NODE_ENV=\"'development'\" --outfile=../../static/js/script.js --watch"
+  },
+  "keywords": [],
+  "author": "GvozdevLeonid",
+  "license": "MIT",
+{%- set deps = [
+  '"@tailwindcss/postcss": "^4.1.16"',
+  '"cross-env": "^10.1.0"',
+  '"postcss": "^8.5.6"',
+  '"postcss-cli": "^11.0.1"',
+  '"postcss-nested": "^7.0.2"',
+  '"postcss-simple-vars": "^7.0.1"',
+  '"rimraf": "^6.0.1"',
+  '"tailwindcss": "^4.1.16"',
+  '"esbuild": "^0.25.0"'
+] -%}
+
+{%- if cookiecutter.include_daisy_ui == "yes" -%}
+{%- set deps = deps + ['"daisyui": "^5.3.10"'] -%}
+{%- endif -%}
+
+{%- if cookiecutter.include_alpinejs == "yes" -%}
+{%- set deps = deps + ['"alpinejs": "^3.15.8"'] -%}
+{%- endif -%}
+
+{%- if cookiecutter.include_alpinejs == "yes" and cookiecutter.include_alpinejs_plugins == "yes" -%}
+{%- set allowed_plugins = ["mask","intersect","resize","persist","focus","collapse","anchor","morph","sort"] -%}
+
+{%- set raw = (cookiecutter.alpinejs_plugins or "") | lower -%}
+{%- set ns = namespace(deps=(deps | default([]))) -%}
+
+{%- for plugin in raw.split(",") -%}
+  {%- set plugin = plugin.strip() -%}
+  {%- if plugin and plugin in allowed_plugins -%}
+    {%- set dep_line = '"@alpinejs/' ~ plugin ~ '": "^3.15.8"' -%}
+    {%- if dep_line not in ns.deps -%}
+      {%- set _ = ns.deps.append(dep_line) -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- set deps = ns.deps -%}
+{%- endif %}
+  "devDependencies": {
+    {{ deps | join(',\n    ') }}
+  }
+}

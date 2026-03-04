@@ -1,0 +1,14 @@
+{
+  "folder": "",
+  "include_daisy_ui": ["yes", "no"],
+  "include_alpinejs": ["no", "yes"],
+  "include_alpinejs_plugins": ["yes", "no"],
+  "alpinejs_plugins": "",
+  "__prompts__": {
+    "folder": "Your ui_stack folder name",
+    "include_daisy_ui": "Include daisyUI?",
+    "include_alpinejs": "Include AlpineJS?",
+    "include_alpinejs_plugins": "If AlpineJS: include plugins?",
+    "alpinejs_plugins": "If include AlpineJS plugins: comma-separated list (mask, intersect, resize, persist, focus, collapse, anchor, morph, sort)"
+  }
+}

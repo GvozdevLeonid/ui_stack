@@ -1,0 +1,32 @@
+[project]
+name = "ui_stack"
+version = "1.0.0"
+authors = [
+  {name="Leonid Gvozdev", email="leo.gvozdev.dev@gmail.com"},
+]
+description = "Frontend build pipeline"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/GvozdevLeonid/ui_stack"
+"Bug Tracker" = "https://github.com/GvozdevLeonid/ui_stack/issues"
+
+[project.scripts]
+ui_stack= "ui_stack.__main__:main"
+
+[tool.setuptools]
+packages = ["ui_stack"]
+
+[tool.setuptools.package-data]
+ui_stack = [
+    "template/**/*",
+    "template/**/**/*",
+]
