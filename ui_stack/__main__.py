@@ -30,6 +30,7 @@ def main() -> None:
     ui_stack_install_parser = subparsers.add_parser("install", help="Install npm packages")
     ui_stack_build_parser = subparsers.add_parser("build", help="Compile css and js into production")
     ui_stack_start_parser = subparsers.add_parser("start", help="Start watching css changes")
+    ui_stack_clean_parser = subparsers.add_parser("clean", help="Remove node modules folder")
     ui_stack_check_updates_parser = subparsers.add_parser("check_updates", help="List possible updates for css and js dependencies")
     ui_stack_update_parser = subparsers.add_parser("update", help="Update possible css and js dependencies")
 

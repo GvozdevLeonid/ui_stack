@@ -14,3 +14,7 @@ def get_folder_path(folder: str) -> str:
 
 def get_src_path(folder: str) -> str:
     return os.path.join(get_folder_path(folder), "static_src")
+
+
+def get_node_modules_path(folder: str) -> str:
+    return os.path.join(get_folder_path(folder), "static_src", "node_modules")

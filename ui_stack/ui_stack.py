@@ -1,10 +1,11 @@
 import logging
 import os
+import shutil
 import subprocess
 import sys
 from typing import Any
 
-from .utils import get_project_root, get_src_path
+from .utils import get_node_modules_path, get_project_root, get_src_path
 
 
 def install_pip_package(package: str) -> None:
@@ -98,6 +99,10 @@ def update_dependencies(folder: str) -> None:
 
 def build(folder: str) -> None:
     npm_command(folder, "run", "build")
+
+
+def clean(folder: str) -> None:
+    shutil.rmtree(get_node_modules_path(folder))
 
 
 def start(folder: str) -> None:
