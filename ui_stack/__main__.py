@@ -4,6 +4,7 @@ import sys
 from .ui_stack import (
     build,
     check_dependency_updates,
+    clean,
     install_dependencies,
     install_template,
     start,
@@ -62,6 +63,9 @@ def main() -> None:
 
     elif args.command == 'update':
         update_dependencies(args.folder)
+
+    elif args.command == 'clean':
+        clean(args.folder)
 
 
 if __name__ == "__main__":
